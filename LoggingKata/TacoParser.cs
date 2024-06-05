@@ -1,4 +1,6 @@
-﻿namespace LoggingKata
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace LoggingKata
 {
     /// <summary>
     /// Parses a POI file to locate all the Taco Bells
@@ -15,7 +17,7 @@
 
             if (cells.Length < 3)
             {
-                logger.LogWarning("less than three items. incomplete data");
+                logger.LogError("There should be at least 3 lines");
 
                 return null; 
             }
@@ -28,7 +30,7 @@
             point.Latitude = latitude;
             point.Longitude = longitude;
 
-            var tacoBell = new TacoBell();
+            var tacoBell = new TacoBell(name, point);
             tacoBell.Name = name;
             tacoBell.Location = point;
 
